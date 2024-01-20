@@ -1,0 +1,27 @@
+
+.label {
+}
+
+.win-label {
+    -fx-background-color: #4e8752;
+}
+
+.btn-play {
+    -fx-background-color: #a15ce3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #331d49;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.win-label > Text {
+    -fx-fill: white;
+}
+
+.win-label Circle {
+    -fx-stroke: white;
+}
