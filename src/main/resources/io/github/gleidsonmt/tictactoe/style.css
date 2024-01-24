@@ -7,12 +7,12 @@
 }
 
 .btn-play {
-    -fx-background-color: #a15ce3;
+    -fx-background-color: #366aff;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-border-color: #331d49;
     -fx-border-style: solid;
-    -fx-border-width: 2px;
+    -fx-border-width: 0.5px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-cursor: hand;

@@ -1,5 +1,6 @@
 package io.github.gleidsonmt.tictactoe;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -15,13 +16,14 @@ public class Board extends GridPane {
 
     private final BoardEngine engine = new BoardEngine();
 
-    public Board(PlayButton playButton) {
+    private final PlayButton playButton;
 
+    public Board(PlayButton playButton) {
+        this.playButton = playButton;
         int acc = 0;
 
         setAlignment(Pos.CENTER);
 //        setGridLinesVisible(true);
-        AtomicBoolean win = new AtomicBoolean(false);
 
 
         for (int i = 0; i < 3; i++) {
@@ -30,15 +32,21 @@ public class Board extends GridPane {
                 Label label = createBlankLabel(String.valueOf(++acc));
                 this.add(label, j, i);
 
-                label.setOnMouseClicked(event -> {
-                    if (label.getUserData() != null) return;
-                    engine.move(label);
-                    win.set(engine.checkWin(this.getChildren()) != null);
-                    if (win.get()) playButton.setDisable(false);
-                });
+                label.setOnMouseClicked(event -> select(label));
 
             }
         }
+
+        Platform.runLater(() -> {
+            this.getScene().setOnKeyReleased(event -> {
+//            board
+                if (event.getText().matches("[^0-9]")) return; // no letters
+                if (Integer.parseInt(event.getText()) < 1) return; // no zero index
+
+                select((Label) this.getChildren().get( Integer.parseInt(event.getText()) -1));
+
+            });
+        });
 
         this.getChildren().get(0).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 2px 2px 0px");
         this.getChildren().get(2).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 0px 2px 2px");
@@ -52,6 +60,18 @@ public class Board extends GridPane {
         this.getChildren().get(5).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 0px 0px 2px");
         this.getChildren().get(3).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 2px 0px 0px");
 
+    }
+
+    boolean win = false;
+
+    private void select(Label label) {
+
+        if (label.getUserData() != null) return;
+        engine.move(label);
+
+        win = engine.checkWin(this.getChildren()) != null;
+
+        playButton.setDisable(!win);
     }
 
     private Label createBlankLabel(String text) {

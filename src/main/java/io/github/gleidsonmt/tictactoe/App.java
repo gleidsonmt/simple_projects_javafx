@@ -45,9 +45,6 @@ public class App extends Application {
             VBox.setVgrow(bd, Priority.ALWAYS);
         });
 
-        stage.getScene().setOnKeyReleased(event -> {
-//            board
-        });
     }
 
     public static void main(String[] args) {
