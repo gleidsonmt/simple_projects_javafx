@@ -1,12 +1,9 @@
 package io.github.gleidsonmt.tictactoe;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Gleidson Neves da Silveira | gleidisonmt@gmail.com
@@ -37,16 +34,14 @@ public class Board extends GridPane {
             }
         }
 
-        Platform.runLater(() -> {
-            this.getScene().setOnKeyReleased(event -> {
+        Platform.runLater(() -> this.getScene().setOnKeyReleased(event -> {
 //            board
-                if (event.getText().matches("[^0-9]")) return; // no letters
-                if (Integer.parseInt(event.getText()) < 1) return; // no zero index
+            if (event.getText().matches("[^0-9]")) return; // no letters
+            if (Integer.parseInt(event.getText()) < 1) return; // no zero index
 
-                select((Label) this.getChildren().get( Integer.parseInt(event.getText()) -1));
+            select((Label) this.getChildren().get( Integer.parseInt(event.getText()) -1));
 
-            });
-        });
+        }));
 
         this.getChildren().get(0).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 2px 2px 0px");
         this.getChildren().get(2).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 0px 2px 2px");

@@ -18,7 +18,7 @@ import java.util.Objects;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         StackPane root = new StackPane();
         root.setPadding(new Insets(10));
         Title title = new Title();

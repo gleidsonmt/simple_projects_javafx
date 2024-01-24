@@ -4,6 +4,7 @@ package io.github.gleidsonmt.tictactoe;
  * @author Gleidson Neves da Silveira | gleidisonmt@gmail.com
  * Create on  19/01/2024
  */
+@SuppressWarnings("all")
 public class Player {
 
     private int score = 0;

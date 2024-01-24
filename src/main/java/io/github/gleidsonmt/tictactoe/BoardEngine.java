@@ -16,7 +16,7 @@ public class BoardEngine {
     private final Player playerOne = new Player();
     private final Player playerTwo = new Player();
 
-    private BoardSignCreator design = new BoardSignCreator();
+    private final BoardSignCreator design = new BoardSignCreator();
 
 
     public BoardEngine() {
