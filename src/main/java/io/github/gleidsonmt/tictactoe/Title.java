@@ -12,8 +12,8 @@ import javafx.scene.text.Text;
  */
 public class Title extends HBox {
 
-    public Title() {
-        Text text = new Text("Tic Tac Toe");
+    public Title(String _text) {
+        Text text = new Text(_text);
         text.setFont(new Font(40));
         this.getChildren().add(text);
         this.setAlignment(Pos.CENTER);

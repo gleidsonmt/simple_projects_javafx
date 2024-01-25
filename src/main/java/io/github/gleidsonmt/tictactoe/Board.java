@@ -12,37 +12,45 @@ import javafx.scene.layout.GridPane;
 public class Board extends GridPane {
 
     private final BoardEngine engine = new BoardEngine();
-
     private final PlayButton playButton;
 
     public Board(PlayButton playButton) {
+
         this.playButton = playButton;
         int acc = 0;
 
         setAlignment(Pos.CENTER);
-//        setGridLinesVisible(true);
+        int rows = 3, cols = 3;
 
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 Label label = createBlankLabel(String.valueOf(++acc));
                 this.add(label, j, i);
-
-                label.setOnMouseClicked(event -> select(label));
-
+                label.setOnMouseClicked(event -> update(label));
             }
         }
 
-        Platform.runLater(() -> this.getScene().setOnKeyReleased(event -> {
+        Platform.runLater(() ->
+                this.getScene().setOnKeyReleased(event -> {
 //            board
-            if (event.getText().matches("[^0-9]")) return; // no letters
-            if (Integer.parseInt(event.getText()) < 1) return; // no zero index
+                    if (event.getText().matches("[^0-9]")) return; // no letters
+                    if (Integer.parseInt(event.getText()) < 1) return; // no zero index
 
-            select((Label) this.getChildren().get( Integer.parseInt(event.getText()) -1));
+                    update((Label) this.getChildren().get(Integer.parseInt(event.getText()) - 1));
 
-        }));
+                }));
 
+        createBorders();
+
+    }
+
+    private void update(Label label) {
+        if (engine.hasWinner()) return;
+        engine.select(label);
+        playButton.setDisable(engine.checkWin(this.getChildren()) == null);
+    }
+
+    private void createBorders() {
         this.getChildren().get(0).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 2px 2px 0px");
         this.getChildren().get(2).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 0px 2px 2px");
 
@@ -54,19 +62,6 @@ public class Board extends GridPane {
 
         this.getChildren().get(5).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 0px 0px 2px");
         this.getChildren().get(3).setStyle("-fx-border-color: rgba(0,0,0,0.6); -fx-border-width: 0px 2px 0px 0px");
-
-    }
-
-    boolean win = false;
-
-    private void select(Label label) {
-
-        if (label.getUserData() != null) return;
-        engine.move(label);
-
-        win = engine.checkWin(this.getChildren()) != null;
-
-        playButton.setDisable(!win);
     }
 
     private Label createBlankLabel(String text) {

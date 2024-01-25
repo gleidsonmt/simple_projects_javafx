@@ -38,6 +38,22 @@ public class BoardEngine {
         }
     }
 
+    boolean win = false;
+
+    public boolean hasWinner() {
+        return win;
+    }
+
+    public void select(Label label) {
+
+        if (label.getUserData() != null) return;
+        this.move(label);
+
+//        win = this.checkWin(this.getChildren()) != null;
+
+//        playButton.setDisable(!win);
+    }
+
     public Player checkWin(ObservableList<Node> labels) {
         Player winner = null;
 
@@ -94,6 +110,7 @@ public class BoardEngine {
 
             acc+=3;
         }
+        win = verify != null;
         return verify == null ? null : winner;
     }
 
