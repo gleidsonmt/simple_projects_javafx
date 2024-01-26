@@ -19,17 +19,19 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+
         StackPane root = new StackPane();
         root.setPadding(new Insets(10));
         Title title = new Title("TicTacToe");
         PlayButton playButton = new PlayButton();
         Board board = new Board(playButton);
-        VBox body = new VBox(title, board, playButton);
+        VBox body = new VBox(title, board.getRoot(), playButton);
         body.setAlignment(Pos.CENTER);
         root.getChildren().add(body);
         root.setAlignment(Pos.CENTER);
-        board.setAlignment(Pos.CENTER);
-        VBox.setVgrow(board, Priority.ALWAYS);
+//        board.setAlignment(Pos.CENTER);
+//        VBox.setVgrow(board, Priority.ALWAYS);
+
         stage.setScene(new Scene(root, 800, 720));
         stage.setMinHeight(600);
         stage.setMinWidth(600);
@@ -38,11 +40,12 @@ public class App extends Application {
 
         playButton.setOnAction(event -> {
             playButton.setDisable(true);
-            body.getChildren().remove(board);
-            Board bd = new Board(playButton);
-            body.getChildren().add(1, bd);
-            bd.setAlignment(Pos.CENTER);
-            VBox.setVgrow(bd, Priority.ALWAYS);
+            board.refresh();
+//            body.getChildren().remove(board);
+//            Board bd = new Board(playButton);
+//            body.getChildren().add(1, bd);
+//            bd.setAlignment(Pos.CENTER);
+//            VBox.setVgrow(bd, Priority.ALWAYS);
         });
 
     }
