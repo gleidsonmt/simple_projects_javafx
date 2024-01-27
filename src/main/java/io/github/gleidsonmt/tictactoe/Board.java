@@ -1,6 +1,9 @@
 package io.github.gleidsonmt.tictactoe;
 
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -17,15 +20,17 @@ public class Board {
 
     private final GridPane grid = new GridPane();
 
+
     public Board(PlayButton playButton) {
 
         this.playButton = playButton;
 
-        refresh();
+        createItems();
 
         Platform.runLater(() ->
+
                 grid.getScene().setOnKeyReleased(event -> {
-//            board
+
                     if (event.getText().matches("[^0-9]")) return; // no letters
                     if (Integer.parseInt(event.getText()) < 1) return; // no zero index
 
@@ -33,15 +38,13 @@ public class Board {
 
                 }));
 
-
     }
 
     public Node getRoot() {
         return grid;
     }
 
-    public void refresh() {
-        grid.getChildren().clear();
+    private void createItems() {
         int acc = 0;
 
         grid.setAlignment(Pos.CENTER);
@@ -59,10 +62,25 @@ public class Board {
         createBorders();
     }
 
+    public void refresh() {
+        grid.getChildren().clear();
+        createItems();
+        engine.refresh();
+        createBorders();
+    }
+
     private void update(Label label) {
-        if (engine.hasWinner()) return;
+        if (engine.hasWinner() ) return;
         engine.select(label);
         playButton.setDisable(engine.checkWin(grid.getChildren()) == null);
+    }
+
+    public IntegerProperty playerScore(int index) {
+        return index == 0 ? engine.getPlayerOne().scoreProperty() : engine.getPlayerTwo().scoreProperty();
+    }
+
+    public StringProperty playerName(int index) {
+        return index == 0 ? engine.getPlayerOne().nameProperty() : engine.getPlayerTwo().nameProperty();
     }
 
     private void createBorders() {
@@ -85,4 +103,5 @@ public class Board {
         blankLabel.setPrefSize(120, 120);
         return blankLabel;
     }
+
 }

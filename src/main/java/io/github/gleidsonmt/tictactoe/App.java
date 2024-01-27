@@ -1,13 +1,17 @@
 package io.github.gleidsonmt.tictactoe;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.Priority;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.util.Objects;
 
@@ -22,15 +26,42 @@ public class App extends Application {
 
         StackPane root = new StackPane();
         root.setPadding(new Insets(10));
+
+        Label scoreOne = new Label();
+        Label scoreTwo = new Label();
+
         Title title = new Title("TicTacToe");
         PlayButton playButton = new PlayButton();
+
         Board board = new Board(playButton);
-        VBox body = new VBox(title, board.getRoot(), playButton);
+
+
+        String model = "Player %s has %d victory points";
+
+        scoreOne.textProperty().bind(
+                Bindings.format(model,
+                        board.playerName(0),
+                        board.playerScore(0)
+                )
+        );
+
+        scoreTwo.textProperty().bind(
+                Bindings.format(model,
+                        board.playerName(1),
+                        board.playerScore(1)
+                )
+        );
+
+
+
+        VBox body = new VBox(title, board.getRoot(), scoreOne, scoreTwo, playButton);
+        body.setSpacing(10);
+        VBox.setMargin(title, new Insets(10));
+        VBox.setMargin(scoreOne, new Insets(10));
+        VBox.setMargin(playButton, new Insets(10));
         body.setAlignment(Pos.CENTER);
         root.getChildren().add(body);
         root.setAlignment(Pos.CENTER);
-//        board.setAlignment(Pos.CENTER);
-//        VBox.setVgrow(board, Priority.ALWAYS);
 
         stage.setScene(new Scene(root, 800, 720));
         stage.setMinHeight(600);
@@ -41,11 +72,6 @@ public class App extends Application {
         playButton.setOnAction(event -> {
             playButton.setDisable(true);
             board.refresh();
-//            body.getChildren().remove(board);
-//            Board bd = new Board(playButton);
-//            body.getChildren().add(1, bd);
-//            bd.setAlignment(Pos.CENTER);
-//            VBox.setVgrow(bd, Priority.ALWAYS);
         });
 
     }

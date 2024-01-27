@@ -11,13 +11,10 @@ import java.util.Objects;
  * Create on  19/01/2024
  */
 public class BoardEngine {
-
     private String act = "x";
-    private final Player playerOne = new Player();
-    private final Player playerTwo = new Player();
-
+    private final Player playerOne = new Player("X");
+    private final Player playerTwo = new Player("O");
     private final BoardSignCreator design = new BoardSignCreator();
-
 
     public BoardEngine() {
         playerOne.setType("x");
@@ -32,7 +29,7 @@ public class BoardEngine {
             act = "o";
         } else {
             label.setUserData("o");
-            label.setText("O");
+            label.setText("o");
             design.drawO(label);
             act = "x";
         }
@@ -52,6 +49,10 @@ public class BoardEngine {
 //        win = this.checkWin(this.getChildren()) != null;
 
 //        playButton.setDisable(!win);
+    }
+
+    public void refresh() {
+        win = false;
     }
 
     public Player checkWin(ObservableList<Node> labels) {
@@ -106,10 +107,17 @@ public class BoardEngine {
 
             if (Objects.equals(verify, "x")) {
                 winner = playerOne;
-            } else winner = playerTwo;
+                playerOne.setScore(playerOne.getScore() + 1);
+                break;
+            } else if(Objects.equals(verify, "o")){
+                winner = playerTwo;
+                playerTwo.setScore(playerTwo.getScore() + 1);
+                break;
+            }
 
             acc+=3;
         }
+
         win = verify != null;
         return verify == null ? null : winner;
     }
@@ -124,5 +132,12 @@ public class BoardEngine {
         return x.equals(y);
     }
 
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
 
 }
