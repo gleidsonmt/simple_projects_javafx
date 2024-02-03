@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -68,6 +69,7 @@ public class App extends Application {
         stage.setMinWidth(600);
         stage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         stage.show();
+
 
         playButton.setOnAction(event -> {
             playButton.setDisable(true);
