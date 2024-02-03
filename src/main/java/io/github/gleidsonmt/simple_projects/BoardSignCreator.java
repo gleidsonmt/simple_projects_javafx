@@ -1,4 +1,4 @@
-package io.github.gleidsonmt.tictactoe;
+package io.github.gleidsonmt.simple_projects;
 
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;

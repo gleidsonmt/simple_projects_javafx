@@ -25,8 +25,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'io.github.gleidsonmt.tictactoe'
-    mainClass = 'io.github.gleidsonmt.tictactoe.App'
+    mainModule = 'io.github.gleidsonmt.simple_projects'
+    mainClass = 'io.github.gleidsonmt.simple_projects.App'
 }
 
 javafx {

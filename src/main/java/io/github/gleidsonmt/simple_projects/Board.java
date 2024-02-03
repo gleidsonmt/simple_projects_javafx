@@ -1,8 +1,7 @@
-package io.github.gleidsonmt.tictactoe;
+package io.github.gleidsonmt.simple_projects;
 
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -31,6 +30,7 @@ public class Board {
 
                 grid.getScene().setOnKeyReleased(event -> {
 
+                    if (event.isAltDown() || event.getCode().isNavigationKey()) return;
                     if (event.getText().matches("[^0-9]")) return; // no letters
                     if (Integer.parseInt(event.getText()) < 1) return; // no zero index
 
