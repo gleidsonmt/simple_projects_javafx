@@ -1,0 +1,24 @@
+
+
+.wire {
+    -fx-border-width: 1px;
+    -fx-border-color: gray;
+}
+
+.wire-1 {
+    -fx-border-width: 1px;
+    -fx-border-color: gray;
+    -fx-background-color:blue;
+}
+
+.wire-2 {
+    -fx-border-width: 1px;
+    -fx-border-color: gray;
+    -fx-background-color:green;
+}
+
+.wire-3 {
+    -fx-border-width: 1px;
+    -fx-border-color: gray;
+    -fx-background-color:yellow;
+}
