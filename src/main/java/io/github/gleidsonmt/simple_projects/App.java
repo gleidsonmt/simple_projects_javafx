@@ -1,5 +1,8 @@
 package io.github.gleidsonmt.simple_projects;
 
+import io.github.gleidsonmt.simple_projects.tictactoe.Board;
+import io.github.gleidsonmt.simple_projects.tictactoe.PlayButton;
+import io.github.gleidsonmt.simple_projects.tictactoe.Title;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;

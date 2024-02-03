@@ -1,4 +1,4 @@
-package io.github.gleidsonmt.simple_projects;
+package io.github.gleidsonmt.simple_projects.tictactoe;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

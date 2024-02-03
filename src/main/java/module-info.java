@@ -5,4 +5,6 @@ module io.github.gleidsonmt.simple_projects {
 
     opens io.github.gleidsonmt.simple_projects to javafx.fxml;
     exports io.github.gleidsonmt.simple_projects;
+    exports io.github.gleidsonmt.simple_projects.tictactoe;
+    opens io.github.gleidsonmt.simple_projects.tictactoe to javafx.fxml;
 }
