@@ -19,7 +19,7 @@ import java.util.Objects;
  * @author Gleidson Neves da Silveira | gleidisonmt@gmail.com
  * Create on  19/01/2024
  */
-public class App extends Application {
+public class TitTacToeApp extends Application {
 
     @Override
     public void start(Stage stage) {
