@@ -1,0 +1,49 @@
+
+
+.root {
+    -fx-background-color: linear-gradient(to left, #fea5a6, #fbc7be);
+}
+
+.text {
+    -fx-fill: gray;
+    -fx-font-weight: bold;
+}
+
+TextField {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-border-color: white;
+    -fx-pref-height: 40px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+TextField:focused {
+    -fx-background-color: white;
+    -fx-border-color: yellow;
+    -fx-pref-height: 40px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+Button {
+    -fx-background-color: #4e8752;
+    -fx-min-height: 40px;
+    -fx-min-width: 80px;
+    -fx-cursor: hand;
+}
+
+Button:pressed {
+    -fx-min-height: 50px;
+    -fx-background-insets: 3px 0px;
+}
+
+Button .text {
+    -fx-fill: white;
+}
+
+.list-view, .list-view .content, .list-view .viewport {
+    -fx-background-color: transparent;
+    -fx-fixed-cell-size: 40px;
+}
+

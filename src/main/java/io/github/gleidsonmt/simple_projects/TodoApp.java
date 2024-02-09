@@ -1,5 +1,6 @@
 package io.github.gleidsonmt.simple_projects;
 
+import fr.brouillard.oss.cssfx.CSSFX;
 import io.github.gleidsonmt.simple_projects.todo.ToDoPanel;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -18,6 +19,9 @@ public class TodoApp extends Application {
         stage.show();
 
         stage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("wireframe.css")).toExternalForm());
+        stage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("todo/style.css")).toExternalForm());
+
+        CSSFX.start(stage);
     }
 
     public static void main(String[] args) {

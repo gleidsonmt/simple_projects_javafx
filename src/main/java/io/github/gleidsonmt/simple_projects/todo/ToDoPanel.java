@@ -26,9 +26,9 @@ public class ToDoPanel {
     private final TaskList taskList  = new TaskList();
 
     public ToDoPanel() {
-        root.getStyleClass().add("wire");
-        form.getStyleClass().add("wire");
-        scroller.getStyleClass().add("wire");
+//        root.getStyleClass().add("wire");
+//        form.getStyleClass().add("wire");
+//        scroller.getStyleClass().add("wire");
 
         root.setPadding(new Insets(50, 150, 50, 150));
         root.setSpacing(20);
