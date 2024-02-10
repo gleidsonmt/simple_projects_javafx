@@ -16,8 +16,12 @@ public class TaskCellFactory implements Callback<ListView<Task>, ListCell<Task>>
             protected void updateItem(Task item, boolean empty) {
                 super.updateItem(item, empty);
                 if (item != null) {
-                    setGraphic(new TaskCell(item.name()));
+
+                    setGraphic(new TaskCell(item.name(), event -> {
+                        param.getItems().remove(item);
+                    }));
                     setText(null);
+
                 } else {
                     setText(null);
                     setGraphic(null);

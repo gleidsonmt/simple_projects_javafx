@@ -34,8 +34,7 @@ Button {
 }
 
 Button:pressed {
-    -fx-min-height: 50px;
-    -fx-background-insets: 3px 0px;
+
 }
 
 Button .text {
@@ -47,3 +46,29 @@ Button .text {
     -fx-fixed-cell-size: 40px;
 }
 
+.list-cell {
+    -fx-paddding: 10px;
+}
+
+.list-cell:focused {
+    -fx-background-color: transparent;
+    -fx-text-color: blue;
+}
+
+.list-cell .delete {
+    -fx-border-color: #b54747;
+    -fx-background-color: transparent;
+    -fx-max-width: 40px;
+    -fx-pref-width: 40px;
+    -fx-min-width: 40px;
+    -fx-border-radius:100px;
+    -fx-border-insets: 5px;
+}
+
+.list-cell:odd, .list-cell:even {
+    -fx-background-color: transparent;
+}
+
+.list-cell .delete .text {
+    -fx-fill: #b54747;
+}
